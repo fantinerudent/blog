@@ -8,3 +8,6 @@ import "./src/style.css"
 
 // Highlighting for code blocks
 import "prismjs/themes/prism.css"
+import "tailwindcss/base.css"
+import "tailwindcss/components.css"
+import "tailwindcss/utilities.css"

@@ -47,10 +47,10 @@ const BlogIndex = ({ data, location }) => {
                       <span itemProp="headline">{post.node.subtitle}</span>
                     </Link>
                   </h2>
+                  <Img fluid={post.node.image.fluid} />
                   <small>{post.node.date}</small>
                 </header>
                 <section>
-                {/* <Img fluid={post.node.image.fluid} /> */}
                   {/* <p
                     dangerouslySetInnerHTML={{
                       __html: post.node.content.childMarkdownRemark.html || post.excerpt,
