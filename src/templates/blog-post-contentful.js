@@ -14,7 +14,6 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title={post.title} description={post.subtitle || post.excerpt} />
-       <Img fluid={post.image.fluid} />
       <article
         className="blog-post"
         itemScope
@@ -22,6 +21,7 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
       >
         <header>
           <h1 itemProp="headline">{post.title}</h1>
+       <Img className="w-6/12" fluid={post.image.fluid} />
           <p>{post.date}</p>
         </header>
         <section

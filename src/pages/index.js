@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Img from 'gatsby-image';
+import Img from "gatsby-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -26,44 +26,53 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.node.title || post.node.slug
+    <div className="bg-orange">
+      <Layout location={location} title={siteTitle}>
+        <SEO title="All posts" />
+        <Bio />
+        <ol style={{ listStyle: `none` }}>
+          {posts.map(post => {
+            const title = post.node.title || post.node.slug
 
-          return (
-            <li key={post.node.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h1> {post.node.title}</h1>
-                  <h2>
-                    <Link to={post.node.slug} itemProp="url">
-                      <span itemProp="headline">{post.node.subtitle}</span>
-                    </Link>
-                  </h2>
-                  <Img fluid={post.node.image.fluid} />
-                  <small>{post.node.date}</small>
-                </header>
-                <section>
-                  {/* <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.node.content.childMarkdownRemark.html || post.excerpt,
-                    }}
-                    itemProp="description"
-                  /> */}
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
-    </Layout>
+            return (
+              <li key={post.node.slug}>
+                <article
+                  className="border-2 m-3 p-3 text-center"
+                  itemScope
+                  itemType="http://schema.org/Article"
+                >
+                  <header>
+                    <h1 className="text-3xl text-brown mb-1">
+                      {" "}
+                      {post.node.title}
+                    </h1>
+                    <h2>
+                      <Link to={post.node.slug} itemProp="url">
+                        <span className="text-yellow" itemProp="headline">
+                          {post.node.subtitle}
+                        </span>
+                      </Link>
+                    </h2>
+                    <small>{post.node.date}</small>
+                  </header>
+                  <section>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          post.node.description.childMarkdownRemark.html ||
+                          post.excerpt,
+                      }}
+                      itemProp="description"
+                    />
+                    {/* <Img className="w-6/12" fluid={post.node.image.fluid} /> */}
+                  </section>
+                </article>
+              </li>
+            )
+          })}
+        </ol>
+      </Layout>
+    </div>
   )
 }
 
@@ -82,6 +91,11 @@ export const pageQuery = graphql`
           title
           subtitle
           author
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
           slug
           image {
             fluid {
