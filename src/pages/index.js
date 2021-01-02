@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import Img from 'gatsby-image';
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -7,7 +8,8 @@ import SEO from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allContentfulArticle.edges
+  console.log("posts", posts)
 
   if (posts.length === 0) {
     return (
@@ -29,30 +31,32 @@ const BlogIndex = ({ data, location }) => {
       <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
+          const title = post.node.title || post.node.slug
 
           return (
-            <li key={post.fields.slug}>
+            <li key={post.node.slug}>
               <article
                 className="post-list-item"
                 itemScope
                 itemType="http://schema.org/Article"
               >
                 <header>
+                  <h1> {post.node.title}</h1>
                   <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
+                    <Link to={post.node.slug} itemProp="url">
+                      <span itemProp="headline">{post.node.subtitle}</span>
                     </Link>
                   </h2>
-                  <small>{post.frontmatter.date}</small>
+                  <small>{post.node.date}</small>
                 </header>
                 <section>
-                  <p
+                {/* <Img fluid={post.node.image.fluid} /> */}
+                  {/* <p
                     dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
+                      __html: post.node.content.childMarkdownRemark.html || post.excerpt,
                     }}
                     itemProp="description"
-                  />
+                  /> */}
                 </section>
               </article>
             </li>
@@ -72,16 +76,23 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
+    allContentfulArticle {
+      edges {
+        node {
           title
-          description
+          subtitle
+          author
+          slug
+          image {
+            fluid {
+              ...GatsbyContentfulFluid
+            }
+          }
+          content {
+            childMarkdownRemark {
+              html
+            }
+          }
         }
       }
     }
