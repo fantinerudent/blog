@@ -21,9 +21,9 @@ const Layout = ({ location, title, children }) => {
   }
 
   return (
-    <div className=" m-3  mx-auto p-3 min-h-full bg-orange" data-is-root-path={isRootPath}>
+    <div className=" m-3 mx-auto p-3 min-h-full bg-orange" data-is-root-path={isRootPath}>
       <header className="global-header bg-yellow h-12 bg-opacity-50 min-w-full text-center p-3">{header}</header>
-      <main>{children}</main>
+      <main className='justify-center flex'>{children}</main>
       <footer>
         © {new Date().getFullYear()}
       </footer>
