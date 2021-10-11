@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
-
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -12,20 +11,22 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
   const { previous, next } = data
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} >
       <SEO title={post.title} description={post.subtitle || post.excerpt} />
       <article
-        className="blog-post"
+        className="blog-post bg-red justify-center  max-w-3xl "
         itemScope
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.title}</h1>
-       <Img className="w-6/12" fluid={post.image.fluid} />
+          <h1 itemProp="headline" className="p-3 font-mono md:text-xl text-center"> {post.title} </h1>
+          <div className="container max-w-screen-lg mx-auto pb-6">
+            <Img className="mx-auto max-w-lg  border-solid border-4 rounded" fluid={post.image.fluid} />
+          </div>
           <p>{post.date}</p>
         </header>
         <section
-          dangerouslySetInnerHTML={{ __html:  post.content.childMarkdownRemark.html }}
+          dangerouslySetInnerHTML={{ __html: post.content.childMarkdownRemark.html }}
           itemProp="articleBody"
         />
         <hr />
@@ -42,6 +43,7 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
             listStyle: `none`,
             padding: 0,
           }}
+
         >
           <li>
             {previous && (

@@ -1,7 +1,5 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
-
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -9,7 +7,6 @@ import SEO from "../components/seo"
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allContentfulArticle.edges
-  console.log("posts", posts)
 
   if (posts.length === 0) {
     return (
@@ -26,7 +23,7 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <div className="bg-orange">
+    <div className="bg-yellow  bg-opacity-50">
       <Layout location={location} title={siteTitle}>
         <SEO title="All posts" />
         <Bio />
@@ -37,18 +34,17 @@ const BlogIndex = ({ data, location }) => {
             return (
               <li key={post.node.slug}>
                 <article
-                  className="border-2 m-3 p-3 text-center"
+                  className="bg-red bg-opacity-40 border-2 m-3 p-3 text-center md:container md:mx-auto"
                   itemScope
                   itemType="http://schema.org/Article"
                 >
                   <header>
-                    <h1 className="text-3xl text-brown mb-1">
-                      {" "}
-                      {post.node.title}
+                    <h1 className="md:text-2xl text-brown mb-1">
+                      {title}
                     </h1>
                     <h2>
                       <Link to={post.node.slug} itemProp="url">
-                        <span className="text-yellow" itemProp="headline">
+                        <span class="text-yellow" itemProp="headline">
                           {post.node.subtitle}
                         </span>
                       </Link>

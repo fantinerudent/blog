@@ -8,21 +8,21 @@ const Layout = ({ location, title, children }) => {
 
   if (isRootPath) {
     header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
+      <h1 className="main-heading text-center">
+        <Link to="/">{title} </Link>
       </h1>
     )
   } else {
     header = (
-      <Link className="header-link-home" to="/">
-        {title}
+      <Link className="header-link-home text-center" to="/">
+        {title} 
       </Link>
     )
   }
 
   return (
-    <div className="container mx-auto bg-red" data-is-root-path={isRootPath}>
-      <header className="global-header">{header}</header>
+    <div className=" m-3  mx-auto p-3 min-h-full bg-orange" data-is-root-path={isRootPath}>
+      <header className="global-header bg-yellow h-12 bg-opacity-50 min-w-full text-center p-3">{header}</header>
       <main>{children}</main>
       <footer>
         © {new Date().getFullYear()}

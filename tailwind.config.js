@@ -13,13 +13,13 @@ module.exports = {
       lightYellow: "#ffebc2",
       // Configure your color palette here
     },
-    extend: {
-      fontFamily: {
-        serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
-        sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
+extend: {
+  fontFamily: {
+    serif: ["Merriweather", ...defaultTheme.fontFamily.serif],
+      sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
       },
-    },
+},
   },
-  variants: {},
-  plugins: [],
+variants: { },
+plugins: [],
 }
