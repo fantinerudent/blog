@@ -23,28 +23,29 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <div className="bg-yellow  bg-opacity-50">
+    <div className="bg-indigo-50  bg-opacity-50 h-screen">
       <Layout location={location} title={siteTitle}>
         <SEO title="All posts" />
         <Bio />
+        <button> toto </button>
         <ol style={{ listStyle: `none` }}>
           {posts.map(post => {
             const title = post.node.title || post.node.slug
 
             return (
-              <li key={post.node.slug}>
+              <li key={post.node.slug} className='grid grid-flow-col grid-cols-2 auto-rows-auto gap-2'>
                 <article
-                  className="bg-red bg-opacity-40 border-2 m-3 p-3 text-center md:container md:mx-auto"
+                  className="bg-indigo-300 bg-opacity-40 border-2 m-3 p-3 text-center md:container md:mx-auto"
                   itemScope
                   itemType="http://schema.org/Article"
                 >
                   <header>
-                    <h1 className="md:text-2xl text-brown mb-1">
+                    <h1 className="md:text-2xl text-indigo-500 mb-1">
                       {title}
                     </h1>
                     <h2>
                       <Link to={post.node.slug} itemProp="url">
-                        <span class="text-yellow" itemProp="headline">
+                        <span class="text-cerise-500" itemProp="headline">
                           {post.node.subtitle}
                         </span>
                       </Link>

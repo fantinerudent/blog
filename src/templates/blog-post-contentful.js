@@ -14,7 +14,7 @@ const BlogPostContentfulTemplate = ({ data, location }) => {
     <Layout location={location} title={siteTitle} >
       <SEO title={post.title} description={post.subtitle || post.excerpt} />
       <article
-        className="blog-post bg-red justify-center  max-w-3xl "
+        className="blog-post bg-indigo-300 justify-center  max-w-3xl "
         itemScope
         itemType="http://schema.org/Article"
       >
